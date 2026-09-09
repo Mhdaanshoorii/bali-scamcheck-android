@@ -1,5 +1,6 @@
 package com.baliscamcheck.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,9 +8,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private WebView webView;
 
@@ -35,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (url.startsWith("tel:")) {
                     try {
-                        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
-                        startActivity(intent);
+                        startActivity(new Intent(Intent.ACTION_DIAL, uri));
                     } catch (Exception ignored) {
                     }
                     return true;
@@ -44,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!url.startsWith("https://mhdaanshoorii.github.io/")) {
                     try {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
+                        startActivity(new Intent(Intent.ACTION_VIEW, uri));
                     } catch (Exception ignored) {
                     }
                     return true;
