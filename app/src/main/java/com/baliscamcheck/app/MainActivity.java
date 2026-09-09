@@ -346,10 +346,14 @@ public class MainActivity extends Activity {
                         StringBuilder s=new StringBuilder("Ditemukan ")
                                 .append(a.length()).append(" laporan terverifikasi.\n\n");
                         for(int i=0;i<a.length();i++){
-                            JSONObject o=a.getJSONObject(i);
-                            s.append("• ").append(o.optString("category","Laporan"))
-                             .append(" · ").append(o.optString("area","Bali")).append("\n")
-                             .append(o.optString("story","")).append("\n\n");
+                            try {
+                                JSONObject o=a.getJSONObject(i);
+                                s.append("• ").append(o.optString("category","Laporan"))
+                                 .append(" · ").append(o.optString("area","Bali")).append("\n")
+                                 .append(o.optString("story","")).append("\n\n");
+                            } catch (Exception ignored) {
+                                // Skip malformed report entries safely.
+                            }
                         }
                         s.append("Hasil berdasarkan laporan komunitas terverifikasi.");
                         resultText.setText(s.toString());
